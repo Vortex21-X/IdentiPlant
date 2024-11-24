@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Identifier</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="side-menu">
+        <h2>Pages</h2>
+        <ul>
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="about.html" id="about-link">About</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="particles"></div>
+        <img src="IdentiPlant Logo.png" alt="IdentiPlant Logo" id="logo">
+        <h1>Welcome to IdentiPlant!</h1>
+        <p>Upload an image of a plant to identify it!</p>
+        <button id="uploadIdentifyButton">Upload and Identify</button>
+        <input type="file" id="plantPhoto" accept="image/*">
+        <div class="drag-drop-area">
+            <p>Or drag and drop your plant image here</p>
+        </div>
+    </div>
+    <div class="result-container hidden">
+        <div class="image-info-container">
+            <div class="uploaded-image-container">
+                <img id="uploadedImage" src="" alt="Uploaded plant">
+            </div>
+            <div class="info-box">
+                <p>Plant information will appear here.</p>
+            </div>
+        </div>
+        <div class="chat-container">
+            <h2>Chat with AI about this plant</h2>
+            <textarea id="chatInput" placeholder="Type your message here..."></textarea>
+        </div>
+    </div>
+    <div class="token-display">
+        Tokens: <span id="tokens-left">30</span>
+    </div>
+    <div id="token-modal" class="modal">
+        <div class="modal-content">
+            <h2>Daily Token Limit Reached</h2>
+            <p>You have used all 30 tokens for today. Please wait until tomorrow to identify more plants.</p>
+            <div class="modal-buttons">
+                <button id="ok-button">OK</button>
+                <button id="code-button">Enter Code</button>
+            </div>
+            <div id="code-input-section" class="hidden">
+                <input type="password" id="code-input" placeholder="Enter password">
+                <button id="submit-code">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

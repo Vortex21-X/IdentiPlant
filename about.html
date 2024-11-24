@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About IdentiPlant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Justify text in the about section */
+        .about-container p {
+            text-align: justify;
+        }
+
+        /* Override any existing styles to force left alignment for headers */
+        .container.about-container h1,
+        .container.about-container h2 {
+            text-align: left !important; /* Using !important to override any existing styles */
+            margin-left: 0;
+            width: 100%;
+            display: block;
+        }
+
+        /* Add margin to the top of the container to move content down */
+        .about-container {
+            margin-top: 80px;
+        }
+
+        /* Additional style to ensure container allows for left alignment */
+        .container.about-container {
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="side-menu">
+        <h2>Pages</h2>
+        <ul>
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="about.html" id="about-link">About</a></li>
+        </ul>
+    </div>
+    <div class="container about-container">
+        <h1>About IdentiPlant</h1>
+        <p>IdentiPlant is an innovative plant identification app that uses advanced image recognition technology to help you identify plants quickly and accurately. Our mission is to connect people with nature by making plant identification accessible and fun for everyone, from gardening enthusiasts to nature lovers and curious minds. With IdentiPlant, you can identify plants from photos in seconds, learn about various plant species and their characteristics, and contribute to a growing database of plant information. Start your plant identification journey with IdentiPlant today!</p>
+
+        <h2>How to Use IdentiPlant</h2>
+        <p>To get started, simply upload a clear image of the plant you want to identify using the upload button or by dragging and dropping the image into the designated area. Once the image is uploaded, our advanced AI technology analyzes the photo and generates a detailed description of the plant, including its name, care instructions, and health status. The results are displayed on a new page, allowing you to learn more about your plant and how to care for it.</p>
+
+        <h2>Why IdentiPlant Was Created</h2>
+        <p>IdentiPlant was created with the mission to connect people with nature by making plant identification accessible and fun for everyone. In a world where many individuals are increasingly interested in gardening, botany, and sustainable living, the need for a reliable and easy-to-use plant identification tool has never been greater. Our goal is to empower users to explore the natural world around them, fostering a deeper appreciation for plants and their roles in our ecosystems.</p>
+
+        <h2>About the Founder</h2>
+        <p>My name is Arjun Shah, and I am a 12-year-old passionate about plants and technology. I decided to create IdentiPlant because I believe that plants are living things that deserve to thrive and not perish. This app aims to help people identify and appreciate the beauty of plants, fostering a deeper connection with nature. Through IdentiPlant, I hope to inspire others to care for the environment and understand the importance of every living organism.</p>
+
+        <h2>Join Our Community</h2>
+        <p>At IdentiPlant, we believe in the power of community. We encourage users to share their plant identification experiences and contribute to our growing database of plant information. Follow us on social media to stay updated on new features, tips, and community events. Together, let’s explore the fascinating world of plants!</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

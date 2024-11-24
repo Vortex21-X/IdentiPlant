@@ -1,0 +1,357 @@
+:root {
+    --primary-green: #4CAF50;
+    --light-green: #E8F5E9;
+    --dark-green: #2E7D32;
+    --white: #FFFFFF;
+    --transition-duration: 0.3s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; /* Ensure Poppins font is used */
+    background-color: var(--light-green);
+    color: var(--dark-green);
+    animation: fadeIn 1s ease-out;
+}
+
+.container, .result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px 30px; /* Reduced top padding */
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+#logo {
+    max-height: 150px;
+    margin-top: 20px; /* Reduced from 30px */
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+    transition: all var(--transition-duration) ease;
+    animation: dropIn 1s ease-out;
+}
+
+h1, h2 {
+    margin: 5px 0 7.5px 0; /* Reduced top margin */
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-green);
+    transition: all var(--transition-duration) ease;
+    animation: slideIn 1s ease-out 0.2s both;
+}
+
+p {
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all var(--transition-duration) ease;
+    animation: slideIn 1s ease-out 0.4s both;
+}
+
+#uploadIdentifyButton {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all var(--transition-duration) ease;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-out 0.6s both;
+}
+
+#uploadIdentifyButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#plantPhoto {
+    display: none;
+}
+
+.drag-drop-area {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed var(--primary-green);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--transition-duration) ease;
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.drag-drop-area:hover, .drag-drop-area.dragover {
+    transform: scale(1.02);
+    background-color: var(--light-green);
+    border-color: var(--dark-green);
+}
+
+.result-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px;
+    animation: fadeIn 1s ease-out;
+}
+
+.image-info-container {
+    width: 50%; /* Increased from 45% */
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 1s ease-out;
+}
+
+.uploaded-image-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    animation: dropIn 1s ease-out;
+}
+
+#uploadedImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-box {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-out 0.5s both;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes dropIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Add this to your existing CSS */
+.error-message {
+    color: #D32F2F;
+    background-color: #ffcdd2;
+    border: 1px solid #EF5350;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px; /* Space between the text and the error message */
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Add these styles to your existing CSS */
+
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: var(--primary-green);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all var(--transition-duration) ease;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: var(--white);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-duration) ease;
+    z-index: 999;
+    padding-top: 60px; /* Add padding to account for the menu icon */
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.side-menu h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px 0 7px 20px; /* Adjusted padding */
+    color: var(--primary-green);
+    text-align: left; /* Ensure left alignment */
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    padding: 10px 20px;
+}
+
+.side-menu ul li a {
+    color: var(--dark-green);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all var(--transition-duration) ease;
+}
+
+.side-menu ul li a:hover {
+    color: var(--primary-green);
+}
+
+/* Token Display */
+.token-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    z-index: 1000;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: all var(--transition-duration) ease;
+}
+
+#ok-button {
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+#code-button {
+    background-color: var(--light-green);
+    color: var(--dark-green);
+}
+
+#code-input-section {
+    margin-top: 20px;
+}
+
+#code-input-section.hidden {
+    display: none;
+}
+
+#code-input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid var(--primary-green);
+    border-radius: 5px;
+}
+
+#submit-code {
+    padding: 8px 15px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+

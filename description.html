@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdentiPlant Says:</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your common CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #E8F5E9; /* Set background color to #E8F5E9 */
+            color: var(--dark-green); /* Use the dark green text color */
+            font-family: 'Poppins', sans-serif; /* Use Poppins font */
+            margin: 0;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .menu-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: var(--primary-green);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all var(--transition-duration) ease;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Initially hidden */
+            width: 250px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-duration) ease;
+            z-index: 999;
+            padding-top: 60px; /* Add padding to account for the menu icon */
+        }
+
+        .side-menu.open {
+            left: 0; /* Show the menu when open */
+        }
+
+        .side-menu h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            margin: 0;
+            padding: 10px 0 7px 20px; /* Adjusted padding */
+            color: var(--primary-green);
+            text-align: left; /* Ensure left alignment */
+        }
+
+        .side-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-menu ul li {
+            padding: 10px 20px;
+        }
+
+        .side-menu ul li a {
+            color: var(--dark-green);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            transition: all var(--transition-duration) ease;
+        }
+
+        .side-menu ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            display: flex; /* Use flexbox for layout */
+            align-items: flex-start; /* Align items to the start */
+        }
+
+        .uploaded-image {
+            max-width: 300px; /* Set a max width for the image */
+            height: auto;
+            border-radius: 8px;
+            margin-left: 5px; /* Move the image 5 pixels from the left edge */
+            margin-right: 10px; /* Space between image and description */
+            margin-top: 2px;
+            margin-bottom: 10px; /* Make it so that the ai description will be 10 pixels down */
+        }
+
+        .description {
+            flex: 1; /* Allow the description box to take remaining space */
+            background-color: #A5D6A7; /* Green background for the description box */
+            padding: 20px; /* Padding inside the description box */
+            margin-top: 10px; /* Make the description move 10 pixels down */
+            border-radius: 8px; /* Rounded corners */
+            flex-direction: column; /* Stack the heading and paragraph */
+        }
+
+        h1 {
+            color: var(--primary-green);
+            text-align: left; /* Align heading to the left */
+            margin-bottom: 10px; /* Space below the heading */
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            text-align: justify; /* Justify the text */
+        }
+
+        .back-button {
+            display: block; /* Change to block to center it */
+            margin: 20px auto; /* Center the button */
+            padding: 10px 15px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: fit-content; /* Adjust width to fit content */
+        }
+
+        .back-button:hover {
+            background-color: var(--dark-green);
+        }
+
+        /* Loading spinner styles */
+        .loading {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000; /* Ensure it is above other content */
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite; /* Spin animation */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+    <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="side-menu">
+        <h2>Pages</h2>
+        <ul>
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="about.html" id="about-link">About</a></li>
+        </ul>
+    </div>
+    <div class="container" id="content">
+        <img id="uploadedImage" class="uploaded-image" src="" alt="Uploaded Image" />
+        <div class="description">
+            <h1>AI Description</h1>
+            <p id="description"></p>
+        </div>
+    </div>
+    <a href="index.html" class="back-button">Back to Upload</a> <!-- Link back to the upload page -->
+
+    <script>
+        // Get the description and image data from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const description = urlParams.get('description');
+        const imageUrl = urlParams.get('image'); // Get the image URL from the parameters
+
+        // Show loading spinner
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('content').style.display = 'none'; // Hide content initially
+
+        // Display the description
+        document.getElementById('description').textContent = description || "No description available.";
+
+        // Display the uploaded image if available
+        if (imageUrl) {
+            document.getElementById('uploadedImage').src = imageUrl; // Set the image source
+        } else {
+            document.getElementById('uploadedImage').alt = "No image available"; // Update alt text if no image
+        }
+
+        // Hide loading spinner and show content after a short delay (simulate loading)
+        setTimeout(() => {
+            document.getElementById('loading').style.display = 'none'; // Hide loading spinner
+            document.getElementById('content').style.display = 'flex'; // Show content
+        }, 1000); // Adjust the delay as needed
+
+        // Menu functionality
+        const menuIcon = document.querySelector('.menu-icon');
+        const sideMenu = document.querySelector('.side-menu');
+
+        // Toggle the side menu when the menu icon is clicked
+        menuIcon.addEventListener('click', function() {
+            sideMenu.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
